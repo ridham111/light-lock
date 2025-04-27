@@ -54,7 +54,7 @@ yarn dev
 ### Login Credentials
 Use the following credentials to log in:
 - Email: `user@example.com`
-- Password: `password123`
+- Password: `Password@2807`
 
 Alternative credentials:
 - Email: `admin@example.com`

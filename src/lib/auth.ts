@@ -15,7 +15,7 @@ const VALID_USERS = [
   {
     id: '1',
     email: 'user@example.com',
-    password: 'password123',
+    password: 'Password@2807',
     name: 'Demo User',
   },
   {
@@ -81,8 +81,12 @@ export const isAuthenticated = (): boolean => {
  */
 export const logout = async (): Promise<void> => {
   // Simulate API call delay
+  sessionStorage.removeItem('isLoggedIn');
+  sessionStorage.removeItem('email');
+  sessionStorage.removeItem('userName');
   await delay(500);
   
+
   // In a real app, clear tokens, cookies, etc.
   // For this demo, we'll just redirect to home
   if (typeof window !== 'undefined') {

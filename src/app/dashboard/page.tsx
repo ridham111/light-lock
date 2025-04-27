@@ -31,14 +31,12 @@ export default function Dashboard() {
   // Simple protection for dashboard page
   // In a real app, you would use middleware or a more robust auth check
   useEffect(() => {
-    // Check if we're on the client and the page has hydrated
-    if (isClient) {
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+    if (!isLoggedIn) {
       // For demo purposes, we'll just check if we came from the login page
       // In a real app, you would verify authentication status
-      const referrer = document.referrer;
-      if (!referrer.includes(window.location.host)) {
-        router.push('/');
-      }
+      
+      router.push('/');
     }
   }, [isClient, router]);
 
@@ -85,22 +83,7 @@ export default function Dashboard() {
       <header className="bg-white dark:bg-gray-800 shadow sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Image
-                className="dark:invert hover-scale"
-                src="/next.svg"
-                alt="Next.js logo"
-                width={100}
-                height={20}
-                priority
-                loading="eager"
-                quality={90}
-              />
-            </motion.div>
+         
             <motion.h1 
               className="ml-4 text-xl font-semibold text-gray-900 dark:text-white"
               initial={{ opacity: 0 }}
@@ -112,28 +95,8 @@ export default function Dashboard() {
           </div>
           
           <div className="flex items-center space-x-4">
-            <AnimatePresence>
-              {showSearch && (
-                <motion.div
-                  initial={{ width: 0, opacity: 0 }}
-                  animate={{ width: 200, opacity: 1 }}
-                  exit={{ width: 0, opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="relative"
-                >
-                  <input
-                    type="text"
-                    placeholder="Search images..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full px-3 py-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    autoFocus
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
-            
-            <Button 
+          
+            {/* <Button 
               variant="outline" 
               size="sm"
               tooltip="Search images"
@@ -145,7 +108,7 @@ export default function Dashboard() {
               }
             >
               {!showSearch && "Search"}
-            </Button>
+            </Button> */}
             
             <Button 
               variant="secondary" 
@@ -182,7 +145,7 @@ export default function Dashboard() {
         </motion.div>
         
         {/* Category Filter */}
-        <div className="mb-8">
+        {/* <div className="mb-8">     
           <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Photo Gallery</h2>
           <div className="flex flex-wrap gap-2 mb-6">
             {imageCategories.map((category) => (
@@ -205,7 +168,7 @@ export default function Dashboard() {
           <p className="mb-6 text-gray-600 dark:text-gray-300">
             {filteredImages.length} photos found. Click on any image to view it in the lightbox.
           </p>
-        </div>
+        </div> */}
         
         {/* Masonry Grid */}
         <Suspense fallback={

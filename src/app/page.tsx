@@ -16,8 +16,8 @@ export default function Home() {
           <div className="flex justify-center mb-8">
             <Image
               className="dark:invert animate-float"
-              src="/next.svg"
-              alt="Next.js logo"
+              src="/image.png"
+              alt="light-lock logo"
               width={150}
               height={30}
               priority
@@ -26,7 +26,7 @@ export default function Home() {
           <LoginForm />
         </div>
         <footer className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
-          <p>Demo application - Use email: user@example.com / password: password123</p>
+          <p>Demo application - Use email: user@example.com / password: Password@2807</p>
         </footer>
       </div>
 
@@ -85,14 +85,7 @@ export default function Home() {
           <p className="text-xl md:text-2xl text-center max-w-lg animate-slide-up delay-200">
             Explore and showcase your favorite photos in a beautiful, interactive gallery
           </p>
-          <div className="mt-8 animate-slide-up delay-300">
-            <div className="inline-flex items-center px-4 py-2 bg-white bg-opacity-20 rounded-full text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clipRule="evenodd" />
-              </svg>
-              Sign in to get started
-            </div>
-          </div>
+        
         </div>
       </div>
     </div>

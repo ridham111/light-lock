@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Input from './Input';
@@ -15,12 +15,14 @@ const LoginForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+  const [userName, setUserName] = useState<string | null>(null);
 
-  // Basic email validation
-  const isValidEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
+  useEffect(() => {
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+    if (isLoggedIn) {
+      router.push('/dashboard');
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,9 +43,16 @@ const LoginForm: React.FC = () => {
 
     try {
       const result = await login(email, password);
-      
-      if (result.success) {
+
+      if (result.success && result.user) {
         setSuccess(true);
+        setUserName(result.user.name);
+
+        // Set login state in session storage
+        sessionStorage.setItem('isLoggedIn', 'true');
+        sessionStorage.setItem('email', email);
+        sessionStorage.setItem('userName', result.user.name);
+
         // Redirect to dashboard after a short delay to show success state
         setTimeout(() => {
           router.push('/dashboard');
@@ -56,6 +65,12 @@ const LoginForm: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  // Basic email validation
+  const isValidEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   };
 
   // Animation variants
@@ -82,6 +97,7 @@ const LoginForm: React.FC = () => {
       },
     },
   };
+
 
   return (
     <motion.div 
@@ -203,4 +219,7 @@ const LoginForm: React.FC = () => {
 };
 
 export default LoginForm;
+
+
+
 
