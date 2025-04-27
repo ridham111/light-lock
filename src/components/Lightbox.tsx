@@ -144,7 +144,8 @@ const Lightbox: React.FC<LightboxProps> = ({ image, onClose, onNext, onPrev, nex
                 document.exitFullscreen();
               }
               onClose();
-            }}            initial={{ opacity: 0, y: -20 }}
+            }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             whileHover={{ scale: 1.1 }}

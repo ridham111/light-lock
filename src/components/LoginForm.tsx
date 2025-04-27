@@ -18,8 +18,10 @@ const LoginForm: React.FC = () => {
   const [userName, setUserName] = useState<string | null>(null);
 
   useEffect(() => {
+
     const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
     if (isLoggedIn) {
+      console.log("🚀 ~ useEffect ~ userName:", userName)
       router.push('/dashboard');
     }
   }, []);
@@ -61,6 +63,7 @@ const LoginForm: React.FC = () => {
         setError(result.message || 'Login failed. Please check your credentials.');
       }
     } catch (err) {
+      console.log("🚀 ~ handleSubmit ~ err:", err)
       setError('An unexpected error occurred. Please try again.');
     } finally {
       setIsLoading(false);
@@ -209,7 +212,7 @@ const LoginForm: React.FC = () => {
         variants={itemVariants}
         className="mt-8 text-center text-sm text-gray-600 dark:text-gray-400"
       >
-        Don't have an account?{' '}
+        Don&apos;t have an account?{' '}
         <a href="#" className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
           Sign up
         </a>

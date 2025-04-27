@@ -2,21 +2,19 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import MasonryGrid from '../../components/MasonryGrid';
 import Carousel from '../../components/Carousel';
 import Button from '../../components/Button';
-import { sampleImages, featuredImages, imageCategories } from '../../lib/images';
+import { sampleImages, featuredImages } from '../../lib/images';
 import { logout } from '../../lib/auth';
 
 export default function Dashboard() {
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeCategory] = useState('all');
   const [filteredImages, setFilteredImages] = useState(sampleImages);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [showSearch, setShowSearch] = useState(false);
+  const [searchQuery] = useState('');
 
   // This ensures we only run client-side code after hydration
   useEffect(() => {
