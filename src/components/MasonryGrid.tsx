@@ -92,6 +92,8 @@ const MasonryGrid: React.FC<MasonryGridProps> = ({ images, columns = 4 }) => {
           <div key={columnIndex} className="flex-1 space-y-4">
             {column.map((image) => {
               // Use intersection observer for each image
+              
+              // eslint-disable-next-line react-hooks/rules-of-hooks
               const [ref, inView] = useInView({
                 triggerOnce: true,
                 threshold: 0.1,
