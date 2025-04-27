@@ -1,103 +1,94 @@
 import Image from "next/image";
+import { Metadata } from "next";
+import LoginForm from "../components/LoginForm";
+
+export const metadata: Metadata = {
+  title: "Light-Lock Gallery | Sign In",
+  description: "Sign in to access your photo gallery",
+};
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <div className="min-h-screen flex flex-col md:flex-row">
+      {/* Left side - Login Form */}
+      <div className="w-full md:w-1/2 flex flex-col items-center justify-center p-8 bg-gray-50 dark:bg-gray-900">
+        <div className="w-full max-w-md mb-8">
+          <div className="flex justify-center mb-8">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              className="dark:invert animate-float"
+              src="/image.png"
+              alt="light-lock logo"
+              width={150}
+              height={30}
+              priority
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </div>
+          <LoginForm />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <footer className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
+          <p>Demo application - Use email: user@example.com / password: Password@2807</p>
+        </footer>
+      </div>
+
+      {/* Right side - Image Showcase */}
+      <div className="hidden md:block w-1/2 bg-blue-600 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-700 opacity-90 z-10"></div>
+        
+        {/* Background pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+              <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" strokeWidth="0.5" />
+            </pattern>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
+        </div>
+        
+        {/* Floating images */}
+        <div className="absolute inset-0 z-20 flex items-center justify-center">
+          <div className="relative w-4/5 h-4/5">
+            <div className="absolute top-0 left-0 w-64 h-64 rounded-lg shadow-xl overflow-hidden transform -rotate-6 animate-float">
+              <Image
+                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&w=800&q=75"
+                alt="Landscape"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="absolute top-1/4 right-0 w-48 h-48 rounded-lg shadow-xl overflow-hidden transform rotate-12 animate-float delay-300">
+              <Image
+                src="https://images.unsplash.com/photo-1511300636408-a63a89df3482?auto=format&w=800&q=75"
+                alt="City"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="absolute bottom-0 right-1/4 w-56 h-56 rounded-lg shadow-xl overflow-hidden transform -rotate-3 animate-float delay-500">
+              <Image
+                src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&w=800&q=75"
+                alt="Beach"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+          </div>
+        </div>
+        
+        {/* Content */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-30 p-8">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center animate-slide-up">
+            Welcome to Light-Lock Gallery
+          </h1>
+          <p className="text-xl md:text-2xl text-center max-w-lg animate-slide-up delay-200">
+            Explore and showcase your favorite photos in a beautiful, interactive gallery
+          </p>
+        
+        </div>
+      </div>
     </div>
   );
 }
+
